@@ -46,7 +46,7 @@ return {
       function()
         require("telescope.builtin").git_status()
       end,
-      desc = "Telescope Git status",
+      desc = "Telescope Git status buffers",
     },
     {
       --Ver los commits hechos en el buffer actual.
@@ -54,7 +54,7 @@ return {
       function()
         require("telescope.builtin").git_bcommits()
       end,
-      desc = "Telescope Git status",
+      desc = "Telescope Git status commits",
     },
     {
       --Ver las ramas del proyecto actual
