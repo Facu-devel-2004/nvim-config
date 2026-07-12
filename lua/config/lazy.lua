@@ -1,43 +1,58 @@
+-- Define la ruta donde se instalará el gestor de plugins lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+-- Si lazy.nvim no está instalado, lo clona desde su repositorio en GitHub
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = "https://github.com/folke/lazy.nvim.git"
   local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+  -- Manejo de errores en caso de que falle la clonación
   if vim.v.shell_error ~= 0 then
     vim.api.nvim_echo({
-      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+      { "Error al clonar lazy.nvim:\n", "ErrorMsg" },
       { out, "WarningMsg" },
-      { "\nPress any key to exit..." },
+      { "\nPresiona cualquier tecla para salir..." },
     }, true, {})
     vim.fn.getchar()
     os.exit(1)
   end
 end
+-- Agrega la ruta de lazy.nvim al runtimepath de Neovim para que pueda ser cargado
 vim.opt.rtp:prepend(lazypath)
 
+-- Configuración inicial de lazy.nvim
 require("lazy").setup({
   spec = {
-    -- add LazyVim and import its plugins
+    -- Agrega LazyVim e importa sus plugins predeterminados
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
-    -- import/override with your plugins
+    -- Importa/sobrescribe con tus propios plugins
+    -- Plugins recomendados, typescript, json, copilot
+    { import = "lazyvim.plugins.extras.linting.eslint" },
+    { import = "lazyvim.plugins.extras.formatting.prettier" },
+    { import = "lazyvim.plugins.extras.lang.typescript" },
+    { import = "lazyvim.plugins.extras.lang.json" },
+    { import = "lazyvim.plugins.extras.lang.tailwind" },
+    { import = "lazyvim.plugins.extras.util.mini-hipatterns" },
+    -- Importa todos los plugins definidos en la carpeta lua/plugins/
     { import = "plugins" },
   },
   defaults = {
-    -- By default, only LazyVim plugins will be lazy-loaded. Your custom plugins will load during startup.
-    -- If you know what you're doing, you can set this to `true` to have all your custom plugins lazy-loaded by default.
+    -- Por defecto, solo los plugins de LazyVim se cargarán de forma "perezosa" (lazy-loading).
+    -- Tus plugins personalizados se cargarán al inicio.
+    -- Si sabes lo que haces, puedes cambiar esto a `true` para que todos tus plugins se carguen de forma "perezosa" por defecto.
     lazy = false,
-    -- It's recommended to leave version=false for now, since a lot the plugin that support versioning,
-    -- have outdated releases, which may break your Neovim install.
-    version = false, -- always use the latest git commit
-    -- version = "*", -- try installing the latest stable version for plugins that support semver
+    -- Se recomienda dejar version=false por ahora, ya que muchos de los plugins que soportan versiones
+    -- tienen lanzamientos desactualizados que podrían romper tu instalación de Neovim.
+    version = false, -- usar siempre el último commit de git
+    -- version = "*", -- intentar instalar la última versión estable para plugins que soportan semver
   },
+  -- Configura los esquemas de color a instalar
   install = { colorscheme = { "tokyonight", "habamax" } },
   checker = {
-    enabled = true, -- check for plugin updates periodically
-    notify = false, -- notify on update
-  }, -- automatically check for plugin updates
+    enabled = true, -- comprobar automáticamente si hay actualizaciones de los plugins
+    notify = false, -- no notificar cuando haya una actualización
+  },
   performance = {
     rtp = {
-      -- disable some rtp plugins
+      -- Deshabilita algunos plugins que vienen por defecto (runtimepath) para mejorar el rendimiento
       disabled_plugins = {
         "gzip",
         -- "matchit",

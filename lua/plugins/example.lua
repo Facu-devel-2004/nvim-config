@@ -1,18 +1,18 @@
--- since this is just an example spec, don't actually load anything here and return an empty spec
+-- como este es solo un archivo de especificación de ejemplo, en realidad no carga nada y devuelve un spec vacío
 -- stylua: ignore
 if true then return {} end
 
--- every spec file under the "plugins" directory will be loaded automatically by lazy.nvim
+-- cada archivo de spec bajo el directorio "plugins" será cargado automáticamente por lazy.nvim
 --
--- In your plugin files, you can:
--- * add extra plugins
--- * disable/enabled LazyVim plugins
--- * override the configuration of LazyVim plugins
+-- En tus archivos de plugins, puedes:
+-- * añadir plugins adicionales
+-- * deshabilitar/habilitar plugins de LazyVim
+-- * sobrescribir la configuración de los plugins de LazyVim
 return {
-  -- add gruvbox
+  -- agregar gruvbox
   { "ellisonleao/gruvbox.nvim" },
 
-  -- Configure LazyVim to load gruvbox
+  -- Configurar LazyVim para que cargue gruvbox
   {
     "LazyVim/LazyVim",
     opts = {
@@ -20,17 +20,17 @@ return {
     },
   },
 
-  -- change trouble config
+  -- cambiar la configuración de trouble
   {
     "folke/trouble.nvim",
-    -- opts will be merged with the parent spec
+    -- opts se fusionará con el spec padre
     opts = { use_diagnostic_signs = true },
   },
 
-  -- disable trouble
+  -- deshabilitar trouble
   { "folke/trouble.nvim", enabled = false },
 
-  -- override nvim-cmp and add cmp-emoji
+  -- sobrescribir nvim-cmp y agregar cmp-emoji
   {
     "hrsh7th/nvim-cmp",
     dependencies = { "hrsh7th/cmp-emoji" },
@@ -40,19 +40,19 @@ return {
     end,
   },
 
-  -- change some telescope options and a keymap to browse plugin files
+  -- cambiar algunas opciones de telescope y un atajo de teclado para buscar en archivos de plugins
   {
     "nvim-telescope/telescope.nvim",
     keys = {
-      -- add a keymap to browse plugin files
+      -- agrega un atajo de teclado para explorar los archivos de plugins
       -- stylua: ignore
       {
         "<leader>fp",
         function() require("telescope.builtin").find_files({ cwd = require("lazy.core.config").options.root }) end,
-        desc = "Find Plugin File",
+        desc = "Buscar archivo de plugin",
       },
     },
-    -- change some options
+    -- cambiar algunas opciones
     opts = {
       defaults = {
         layout_strategy = "horizontal",
@@ -63,20 +63,20 @@ return {
     },
   },
 
-  -- add pyright to lspconfig
+  -- agregar pyright a lspconfig
   {
     "neovim/nvim-lspconfig",
     ---@class PluginLspOpts
     opts = {
       ---@type lspconfig.options
       servers = {
-        -- pyright will be automatically installed with mason and loaded with lspconfig
+        -- pyright se instalará automáticamente con mason y se cargará con lspconfig
         pyright = {},
       },
     },
   },
 
-  -- add tsserver and setup with typescript.nvim instead of lspconfig
+  -- agregar tsserver y configurarlo con typescript.nvim en lugar de lspconfig
   {
     "neovim/nvim-lspconfig",
     dependencies = {
@@ -84,8 +84,8 @@ return {
       init = function()
         require("lazyvim.util").lsp.on_attach(function(_, buffer)
           -- stylua: ignore
-          vim.keymap.set( "n", "<leader>co", "TypescriptOrganizeImports", { buffer = buffer, desc = "Organize Imports" })
-          vim.keymap.set("n", "<leader>cR", "TypescriptRenameFile", { desc = "Rename File", buffer = buffer })
+          vim.keymap.set( "n", "<leader>co", "TypescriptOrganizeImports", { buffer = buffer, desc = "Organizar Imports" })
+          vim.keymap.set("n", "<leader>cR", "TypescriptRenameFile", { desc = "Renombrar Archivo", buffer = buffer })
         end)
       end,
     },
@@ -93,29 +93,29 @@ return {
     opts = {
       ---@type lspconfig.options
       servers = {
-        -- tsserver will be automatically installed with mason and loaded with lspconfig
+        -- tsserver se instalará automáticamente con mason y se cargará con lspconfig
         tsserver = {},
       },
-      -- you can do any additional lsp server setup here
-      -- return true if you don't want this server to be setup with lspconfig
+      -- puedes realizar cualquier configuración adicional del servidor lsp aquí
+      -- devuelve true si no quieres que este servidor se configure con lspconfig
       ---@type table<string, fun(server:string, opts:_.lspconfig.options):boolean?>
       setup = {
-        -- example to setup with typescript.nvim
+        -- ejemplo de configuración con typescript.nvim
         tsserver = function(_, opts)
           require("typescript").setup({ server = opts })
           return true
         end,
-        -- Specify * to use this function as a fallback for any server
+        -- Especifica * para usar esta función como respaldo para cualquier servidor
         -- ["*"] = function(server, opts) end,
       },
     },
   },
 
-  -- for typescript, LazyVim also includes extra specs to properly setup lspconfig,
-  -- treesitter, mason and typescript.nvim. So instead of the above, you can use:
+  -- para typescript, LazyVim también incluye specs extras para configurar correctamente lspconfig,
+  -- treesitter, mason y typescript.nvim. Así que en lugar de lo anterior, puedes usar:
   { import = "lazyvim.plugins.extras.lang.typescript" },
 
-  -- add more treesitter parsers
+  -- agregar más parsers de treesitter
   {
     "nvim-treesitter/nvim-treesitter",
     opts = {
@@ -138,13 +138,13 @@ return {
     },
   },
 
-  -- since `vim.tbl_deep_extend`, can only merge tables and not lists, the code above
-  -- would overwrite `ensure_installed` with the new value.
-  -- If you'd rather extend the default config, use the code below instead:
+  -- debido a que `vim.tbl_deep_extend` solo puede fusionar tablas y no listas, el código anterior
+  -- sobrescribiría `ensure_installed` con el nuevo valor.
+  -- Si prefieres extender la configuración por defecto, usa el código de abajo en su lugar:
   {
     "nvim-treesitter/nvim-treesitter",
     opts = function(_, opts)
-      -- add tsx and treesitter
+      -- agregar tsx y treesitter
       vim.list_extend(opts.ensure_installed, {
         "tsx",
         "typescript",
@@ -152,7 +152,7 @@ return {
     end,
   },
 
-  -- the opts function can also be used to change the default opts:
+  -- la función opts también se puede usar para cambiar las opciones por defecto:
   {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
@@ -165,24 +165,24 @@ return {
     end,
   },
 
-  -- or you can return new options to override all the defaults
+  -- o puedes devolver nuevas opciones para sobrescribir todas las predeterminadas
   {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
     opts = function()
       return {
-        --[[add your custom lualine config here]]
+        --[[añade tu configuración personalizada de lualine aquí]]
       }
     end,
   },
 
-  -- use mini.starter instead of alpha
+  -- usar mini.starter en lugar de alpha
   { import = "lazyvim.plugins.extras.ui.mini-starter" },
 
-  -- add jsonls and schemastore packages, and setup treesitter for json, json5 and jsonc
+  -- agregar los paquetes jsonls y schemastore, y configurar treesitter para json, json5 y jsonc
   { import = "lazyvim.plugins.extras.lang.json" },
 
-  -- add any tools you want to have installed below
+  -- agregar cualquier herramienta que quieras tener instalada abajo
   {
     "williamboman/mason.nvim",
     opts = {

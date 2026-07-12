@@ -1,3 +1,3 @@
--- Keymaps are automatically loaded on the VeryLazy event
--- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
--- Add any additional keymaps here
+-- Los atajos de teclado (Keymaps) se cargan automáticamente en el evento VeryLazy
+-- Atajos de teclado por defecto que siempre se configuran: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
+-- Agrega cualquier atajo de teclado adicional aquí
