@@ -183,15 +183,4 @@ return {
   { import = "lazyvim.plugins.extras.lang.json" },
 
   -- agregar cualquier herramienta que quieras tener instalada abajo
-  {
-    "williamboman/mason.nvim",
-    opts = {
-      ensure_installed = {
-        "stylua",
-        "shellcheck",
-        "shfmt",
-        "flake8",
-      },
-    },
-  },
 }
