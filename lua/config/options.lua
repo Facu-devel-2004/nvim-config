@@ -1,5 +1,14 @@
 -- Agrega cualquier opción adicional aquí
+-- Animaciones Snacks
+vim.g.snacks_animate = true
 
+--Ruta especifica para saber donde empieza el proyecto
+vim.g.root_spec = { "lsp", { ".git", "lua" }, "cwd" }
+
+--Compartir portapapeles del sistema y este entorno
+vim.opt.clipboard = vim.env.SSH_CONNECTION and "" or "unnamedplus"
+--Confirmo el guardado luego de salir del archivo (buffer)
+vim.opt.confirm = true
 -- Mostrar el título de la ventana
 vim.opt.title = true
 -- Auto indentación inteligente
@@ -28,8 +37,8 @@ vim.opt.breakindent = true
 vim.opt.shiftwidth = 2
 -- Número de espacios que cuenta un <Tab>
 vim.opt.tabstop = 2
--- No ajustar el texto visualmente (las líneas largas se salen de la pantalla)
-vim.opt.wrap = false
+-- Ajustar el texto visualmente (las líneas largas continúan abajo)
+vim.opt.wrap = true
 -- Permitir borrar (backspace) sobre el inicio de inserción, saltos de línea e indentación
 vim.opt.backspace = { "start", "eol", "indent" }
 -- Añadir el directorio actual y todos los subdirectorios a la ruta (para comandos como find)
