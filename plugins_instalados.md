@@ -1,320 +1,257 @@
-
-# Plugins Instalados en Nvim
-
-
-## aerial.nvim
-***Funcion: *** Muestra un esquema estructural del codigo.
-
-***Accion Principal: *** Visualizar jerarquia del archivo y saltar a una funcion especifica.
-
-***Comandos: ***
--<leader>cs
-
-
-## bufferline.nvim
-***Funcion: *** Barra superior que muestra los buffers abiertos.
-
-***Comandos: ***
-- Shift + h: Buffer anterior.
-- Shift + l: Buffer siguiente.
-- <leader>bd: Cierro el buffer actual.
-- <leader>bp: Fijo el buffer para que no se cierre.
-
-
-## flash.nvim
-***Funcion: *** Motor de salto hiperrapido.
-
-***Accion Principal: *** Resalta palabras a la vista y navegar entre ellas.
-
-***Comandos: ***
-- s (Modo Normal): Activa flash, escribe la palabra a buscar y se las seleccionara en el proyecto.
-- S (Modo Normal): Lo mismo pero con bloques de codigos.
-
-
-## lazy.nvim
-***Funcion: *** Gestor de paquetes.
-
-***Comandos: ***
-- <leader>l: Ventana para la instalacion/actualizacion de paquetes.
-
-
-## blink.cmp
-***Funcion: *** Motor de autocompletado.
-
-***Comandos: ***
-- Ctrl + n: Siguiente.
-- Ctrl + p: Anterior.
-
-
-## friendly-snippets
-***Funcion: *** Base de datos masiva de snippets para cualquier lenguaje.
-
-***Accion Principal: *** Trabaja con blink, para autocompletar mas codigo.
-
-
-## gitsigns.nvim
-***Funcion: *** Integracion visual y directa con git, archivos marcados.
-
-***Accion Principal: *** Proporciona un contexto visual de los cambios en tiempo real, y permite gestionar el control de versiones sin salir del editor.
-
-***Comandos: ***
-- ]h / [h: Saltar al siguiente o anterior bloque de codigo modificado.
-- <leader>ghp: Ventana flotante que muestra que cambie.
-- <leader>ghs: Preparar unicamente el bloque de codigo en el que estoy posicionado para el proximo commit.
-- <leader>ghr: Deshacer los cambios de ese bloque y volver a como estaba en el commit anterior.
-- <leader>gb: Activar Git Blame para ver quien escribio la linea en la que estoy posicionado.
-
-
-## lualine.nvim
-***Funcion: *** Barra de estado informativa en la parte inferior.
-
-
-## mason.nvim
-***Funcion: *** Gestor de paquetes para herramientas externas a NeoVim, servidores de lenguaje LSP. mason-lspconfig.nvim es su acople para que esto se inicialice.
-
-***Accion Principal: *** Hace que NeoVim entienda mi codigo.
-
-***Comandos: ***
-- <leader>cm o ":Mason": Donde puedo instalar o desinstalar los servidores externos.
-
-
-## mini.ai
-***Funcion: *** Mejora la edicion basada en "Objetos de Texto"
-
-***Comandos: ***
-- d: Borrar.
-- c: Cambiar.
-- y: Copiar.
-- v: Seleccionar.
-- vaf: Selecciona una funcion completa visualmente.
-- cia: Cambia el argumento de una funcion directamente.
-
-
-## mini.hipatterns
-***Funcion: *** Resalta patrones de texto, por ejemplo, el color escrito en CSS.
-
-
-## mini.icons
-***Funcion: *** Añade iconos modernos a mi entorno.
-
-
-## mini.pairs
-***Funcion: *** Cierre automatico de pares, llaves, corchetes y etc.
-
-
-## noice.nvim
-***Funcion: *** Mejora las notificaciones de errores como ventanas flotantes.
-
-
-## nui.nvim
-***Funcion: *** Permite crear ventanas flotantes en el sistema.
-
-
-## nvim-lint
-***Funcion: *** Usa herramientas externas para evaluar el codigo en busca de errores de sintaxis.
-
-***Comandos: ***
-- ]d: Diagnostico siguente.
-- [d: Diagnostico anterior.
-- <leader>cd: Ver mensaje completo.
-
-
-## nvim-treesitter
-***Funcion: *** Analiza el texto y arma un arbol sintactico (AST), sabe diferenciar entre variables.
-
-
-## nvim-treesitter-textobjects
-***Funcion: *** Le enseña a nvim donde inicia y termina una funcion, clase o condicion.
-
-
-## nvim-ts-autotag
-***Funcion: *** Asistente de marcado para cerrar etiquetas de marcado para HTML, XML o JSX.
-
-
-## persistence.nvim
-***Funcion: *** Encargado de recordar que archivos tenia abiertos, en que linea estaba el cursor y que ventanas tenia divididas.
-
-***Conmandos: *** 
-- <leader>qs: Restaura la secion guardada para el directorio actual.
-- <leader>ql: Restaura la ultima sesion de trabajo, sin importar el directorio.
-- <leader>qd: Evita que haga cambios en la sesion actual se guarden al salir.
-
-
-## plenary.nvim
-***Funcion: *** Libreria de utilidades de Lua.
-
-
-## snacks.nvim
-***Funcion: *** Pantalla principal al abrir nvim.
-
-***Comandos: ***
-- <leader>z: Modo zen, limpia la interfaz para centrarme solo en el codigo.
-- <leader>n: Abre el historial de notificaciones que me haya mostrado el editor.
-
-
-## telescope.nvim
-***Funcion: *** Motor de busqueda principal, busca archivos, texto de archivos y buffers, todo filtrado en tiempo real.
-
-***Comandos: *** 
-- ":Telescope find_files": Busca archivos por nombre en mi directorio actual.
-- ":Telescope live_grep": Busca una cadena de texto especifica dentro de todos los archivos del proyecto.
-- ":Telescope buffers": Muestra los archivos actualmente abiertos.
-- ":Telescope file_browser": Abre el explorador de archivos.
-- (Dentro de la ventana de telescope, Normal) c: Crear archivo.
-- (Dentro de la ventana de telescope, Normal) r: Renombrar archivo.
-- (Dentro de la ventana de telescope, Normal) d: Eliminar archivo.
-
-
-## todo-comments.nvim
-***Funcion: *** Analiza el codigo y resalta visualmente comentarios clave como TODO (por hacer), BUG (error), HACK (solucion temporal) o NOTE (nota).
-
-***Comandos: *** 
-- ":TodoTelescope": Abre telescope mostrando todos los TODO y comentarios especiales del proyecto.
-- ":TodoTrouble": Envia listas de tareas pendientes al panel de trouble.nvim.
-
-
-## trouble.nvim
-***Funcion: *** Crea un panel estructurado para listar todos los problemas de mi codigo de forma limpia.
-
-***Comandos: *** 
-- ":Trouble diagnostics toggle": Abre y cierra el panel mostrando errores y advertencias del archivo atual del proyecto.
-
-
-## ts-comments.nvim
-***Funcion: *** Hace que los comentarios sean "inteligentes", por ejemplo si tengo un archivo con multiples lenguajes, este plugin sabe donde esta el cursor y que comentario poner para el lenguaje.
-
-***Comandos: *** 
-- (Modo Normal) gcc: Comenta la linea actual.
-- (Modo Visual) gc: Seleccionando el texto comenta o descomenta el bloque.
-
-
-## vim-dadbod
-***Funcion: *** Herramienta para interactuar con una base de datos desde neovim. Me permite conectarme, escribir consultas y ejecutarlas sin ir a la terminal.
-
-***Comandos: *** 
-- ":DB [url de conexion]": Inicio una conexion.
-- ":DB {query}": Ejecuta una consulta rapida.
-
-
-## which-key.nvim
-***Funcion: *** Salvavidas para la memoria, despliega un menu con los comandos displonibles.
-
-***Comandos: ***
-- ":WhichKey": Abre el menu desplegable.
-
-
-## yanky.nvim
-***Funcion: *** Mejora del sistema de copiar, ahora hay historial y un visual cuando copias algo.
-
-***Comandos: ***
-- ":YankyRingHistory": Abre una ventana para ver el historial.
-
-
-## clangd_extensions.nvim
-***Funcion: *** Mejora la experiencia de desarrollo en C, C++.
-
-***Comandos: ***
-- ":ClangdSwitchSourceHeader": Alterna entre el .h, .c / .cpp.
-- ":ClangdAST": Muestra el arbol de sintaxis abstracta para la linea actual.
-- ":ClangdTypeHierarchy": Muestra la jerarquia de tipos/clases.
-
-
-## cmake-tools.nvim
-***Funcion: *** Integracion directa con cmake.
-
-***Comandos: *** 
-- ":CMakeGenerate": Genera los archivos de construccion.
-- ":CMakeBuild": Compila el proyecto.
-- ":CMakeRun": Ejecuta el binario compilado.
-- ":CMakeDebug": Inicia una sesion de depuracion.
-
-
-## grug-far.nvim
-***Funcion: *** Herramienta de busqueda y remplazo, se abre un panel y busco en todo el proyecto el texto a reemplazar.
-
-***Comandos: *** 
-- <leader>sr: Abre GrugFar.
-- (Modo Visual) <leader>sr: Busca y reemplaza el texto seleccionado.
-
-
-## harpoon
-***Funcion: *** Navegador de archivos abiertos.
-
-
-## neogen
-***Funcion: *** Genera documentacion de forma automatica. Analiza la funcion donde tengo el cursor y genera un esqueleto en el formato correcto para escribir la explicacion.
-
-***Comandos: ***
-- ":Neogen": Genera la anotacion en la posicion actual.
-- <leader>cn: Genera la documentacion de forma instantanea.
-
-
-## neotest neotest-python
-***Funcion: *** Ejecuta pruebas unitarias sin salir del editor. Muestra visualmente que pruebas pasan y cuales fallan.
-
-***Comandos: *** 
-- <leader>tt / tr: Ejecuta la prueba mas cercana a donde tengo el cursor.
-- <leader>tT: Ejecuta todas las pruebas del archivo actual.
-- <leader>ts: Abre el panel de resumen para ver el arbol de pruebas.
-- <leader>to: Abre el panel de salida para leer los detalles del fallo de una prueba.
-
-
-## nvim-dap
-***Funcion: *** Transforma nvim en un IDE completo, permitiendo pausar la ejecucion del codigo, avanzar linea por linea e inspeccionar el valor de las variables en memoria para encontrar errores de logica.
-
-***Comandos: ***
-- <leader>db / dB: Coloca o quita un punto de interrupcion en la line actual.
-- <leader>dc: Inicia la depuracion o continua la ejecucion hasta el proximo punto de interrupcion.
-- <leader>di: Entra dentro de la funcion que se esta llamando en esa linea.
-- <lader>do: Sale de la funcion actual y vuelve a donde fue llamada.
-
-
-## nvim-dap-python
-***Funcion: *** Adapta el plugin anterior para python.
-
-***Comandos: *** 
-- <leader>dPc: Configurado para ejecutar la clase actual en modo depuracion.
-- <leader>dPt: Configurado para ejecutar el test especifico donde tengo el cursor en modo depuracion.
-
-
-## nvim-dap-ui
-***Funcion: *** Le da una interfaz grafica al depurador, abre una ventana y muestra las variables, el estado de la memoria, pila de llamadas y puntos de interrupcion.
-
-***Comandos: *** 
-- <leader>du: Abre o cierra todos los paneles de la interfaz.
-- <leader>de: Evalua la variable o expresion bajo el cursor.
-- (Modo Visual) <leader>de: Lo mismo que el anterior pero el bloque de texto seleccionado.
-
-
-## nvim-jdtls
-***Funcion: *** Le da a nvim la capacidad de entender la estructura completa de un proyecto Java, autocompletar clases, organizar importaciones y compilar.
-
-***Comandos: ***
-- ":JdtCompile": Compila el espacio de trabajo.
-- ":JdtUpdateConfig": Actualiza la configuracion de Gradle/Maven.
-
-
-## rustaceanvim
-***Funcion: *** Herramienta definitiva para programar en rust. Autoconfigura rust-analyzer (servidor de lenguaje), inyecta inlay hints (pistas visuales de tipos en el codigo) y permite ejecutar test o depurar el codigo.
-
-***Comandos: ***
-- ":RustLsp": Comando principal de ahi se derivan a mas funciones.
-- "codeAction": Sugerencias de compilador.
-- "renderDiagnostic": Para ver explicaciones detalladas de los estrictos errores del compilador de Rust.
-
-
-## venv-selector.nvim
-***Funcion: *** Permite trabajar con entornos virtuales de Python. Permite buscar y seleccionar rapidamente el entorno activo para tu proyecto, al seleccionarlo le avisa al servidor de lenguaje de python y al depurador donde estan instaladas las librerias solucionando los errores de "modulo no encontrado".
-
-***Comandos: *** 
-- ":VenvSelect": Menu flotante para buscar y elegir el entorno virtual.
-- <leader>cv: Comando anterior para abrir el selector.
-
-
-## vim-dadbod-ui
-***Funcion: *** Este plugin es la interfaz grafica de el que esta relacionado con la Base de Datos.
-
-***Comandos: *** 
-- ":DBUI / BDUIToggle": Abre o cierra el panel lateral de la base de datos.
-- ":DBUIAddConnection": Abre un prompt para que se agrege una nueva base de datos pegando su URL de conexion.
-- ":DBUIFindBuffer": Vincula el archivo de texto SQL en el que estoy trabajando con una base de datos especifica.
+# 🔌 Guía de Plugins en Neovim
+
+A continuación, se detalla la lista de plugins instalados en esta configuración, organizados por categoría, junto con sus funciones y comandos más útiles.
+
+---
+
+## 🧭 Navegación y Búsqueda
+
+### `aerial.nvim`
+- **Función:** Muestra un esquema estructural del código.
+- **Acción Principal:** Visualizar la jerarquía del archivo y saltar rápidamente a una función específica.
+- **Comandos:**
+  - `<leader>cs`: Abre el esquema del código.
+
+### `flash.nvim`
+- **Función:** Motor de salto hiperrápido.
+- **Acción Principal:** Resalta palabras a la vista y permite navegar entre ellas en muy pocas pulsaciones.
+- **Comandos:**
+  - `s` *(Normal)*: Activa flash, escribe la palabra a buscar y la selecciona.
+  - `S` *(Normal)*: Igual al anterior pero con bloques de código.
+
+### `harpoon`
+- **Función:** Navegador ultrarrápido de archivos frecuentes o anclados.
+
+### `telescope.nvim`
+- **Función:** Motor de búsqueda principal, busca archivos, texto dentro de archivos y buffers, filtrado en tiempo real.
+- **Comandos:**
+  - `:Telescope find_files`: Busca archivos por nombre en el directorio actual.
+  - `:Telescope live_grep`: Busca una cadena de texto dentro de todos los archivos del proyecto.
+  - `:Telescope buffers`: Muestra los archivos actualmente abiertos.
+  - `:Telescope file_browser`: Abre el explorador de archivos.
+  - `c` *(Dentro de Telescope)*: Crear archivo.
+  - `r` *(Dentro de Telescope)*: Renombrar archivo.
+  - `d` *(Dentro de Telescope)*: Eliminar archivo.
+
+### `yanky.nvim`
+- **Función:** Mejora del sistema de copiado (yank). Introduce un historial visual al copiar contenido.
+- **Comandos:**
+  - `:YankyRingHistory`: Abre una ventana para ver y pegar desde el historial.
+
+---
+
+## 🎨 Interfaz de Usuario (UI)
+
+### `bufferline.nvim`
+- **Función:** Barra superior estilizada que muestra los buffers (archivos) abiertos.
+- **Comandos:**
+  - `Shift + h`: Ir al buffer anterior.
+  - `Shift + l`: Ir al buffer siguiente.
+  - `<leader>bd`: Cerrar el buffer actual.
+  - `<leader>bp`: Fijar (pin) el buffer para que no se cierre accidentalmente.
+
+### `lualine.nvim`
+- **Función:** Barra de estado informativa y elegante en la parte inferior de la pantalla.
+
+### `mini.icons`
+- **Función:** Añade iconos modernos y estéticos a todo el entorno.
+
+### `noice.nvim`
+- **Función:** Moderniza la interfaz de Neovim y muestra notificaciones, línea de comandos y mensajes emergentes como ventanas flotantes.
+
+### `nui.nvim`
+- **Función:** Librería base que permite crear ventanas flotantes y componentes UI sofisticados.
+
+### `snacks.nvim`
+- **Función:** Provee la pantalla principal (dashboard) al abrir Neovim y otras utilidades.
+- **Comandos:**
+  - `<leader>z`: Modo Zen (limpia la interfaz para centrarse solo en el código).
+  - `<leader>n`: Abre el historial de notificaciones.
+
+---
+
+## ⌨️ Edición y Autocompletado
+
+### `blink.cmp`
+- **Función:** Motor de autocompletado rápido y eficiente.
+- **Comandos:**
+  - `Ctrl + n`: Opción siguiente.
+  - `Ctrl + p`: Opción anterior.
+
+### `friendly-snippets`
+- **Función:** Base de datos masiva de *snippets* (fragmentos de código) para múltiples lenguajes. Trabaja en conjunto con `blink.cmp`.
+
+### `grug-far.nvim`
+- **Función:** Herramienta avanzada de búsqueda y reemplazo en todo el proyecto a través de un panel amigable.
+- **Comandos:**
+  - `<leader>sr`: Abre GrugFar.
+  - `<leader>sr` *(Visual)*: Busca y reemplaza el texto previamente seleccionado.
+
+### `mini.ai`
+- **Función:** Mejora la edición basada en "Objetos de Texto".
+- **Comandos Generales:**
+  - `d` (borrar), `c` (cambiar), `y` (copiar), `v` (seleccionar).
+- **Comandos Específicos:**
+  - `vaf`: Selecciona una función completa visualmente.
+  - `cia`: Cambia el argumento de una función directamente.
+
+### `mini.hipatterns`
+- **Función:** Resalta patrones de texto. Por ejemplo, colorea códigos hexadecimales directamente con su color.
+
+### `mini.pairs`
+- **Función:** Cierre automático de pares (llaves, corchetes, paréntesis, comillas).
+
+### `nvim-ts-autotag`
+- **Función:** Cierre y renombrado automático de etiquetas para HTML, XML o JSX.
+
+### `ts-comments.nvim`
+- **Función:** Hace que los comentarios sean "inteligentes" en archivos multilingües, adaptando el comentario al lenguaje bajo el cursor.
+- **Comandos:**
+  - `gcc` *(Normal)*: Comenta la línea actual.
+  - `gc` *(Visual)*: Comenta/descomenta el bloque seleccionado.
+
+---
+
+## 🧠 LSP, Sintaxis y Lenguajes
+
+### `mason.nvim`
+- **Función:** Gestor de paquetes e instalador gráfico de herramientas externas (servidores LSP, linters, formateadores).
+- **Comandos:**
+  - `<leader>cm` o `:Mason`: Abre la interfaz para instalar/desinstalar herramientas.
+
+### `nvim-lint`
+- **Función:** Usa herramientas externas para evaluar el código en busca de errores de sintaxis y estilo de forma asíncrona.
+- **Comandos:**
+  - `]d`: Diagnóstico siguiente.
+  - `[d`: Diagnóstico anterior.
+  - `<leader>cd`: Ver el mensaje completo del error.
+
+### `nvim-treesitter`
+- **Función:** Analiza el texto y construye un árbol sintáctico (AST). Mejora drásticamente el resaltado de sintaxis.
+
+### `nvim-treesitter-textobjects`
+- **Función:** Extiende Treesitter enseñándole a Neovim dónde inicia y termina una función, clase o condición.
+
+### `todo-comments.nvim`
+- **Función:** Analiza el código y resalta visualmente comentarios clave como `TODO`, `BUG`, `HACK` o `NOTE`.
+- **Comandos:**
+  - `:TodoTelescope`: Abre Telescope mostrando todos los comentarios especiales del proyecto.
+  - `:TodoTrouble`: Envía las listas de tareas pendientes al panel de Trouble.
+
+### `trouble.nvim`
+- **Función:** Crea un panel estructurado y limpio para listar todos los problemas (diagnósticos, referencias, etc.) del código.
+- **Comandos:**
+  - `:Trouble diagnostics toggle`: Abre/cierra el panel mostrando errores y advertencias.
+
+### `neogen`
+- **Función:** Genera documentación de forma automática según la firma de la función bajo el cursor.
+- **Comandos:**
+  - `:Neogen` o `<leader>cn`: Genera el bloque de documentación instantáneamente.
+
+---
+
+## 🛠️ Herramientas Específicas de Lenguaje
+
+### C / C++ (`clangd_extensions.nvim`)
+- **Función:** Mejora la experiencia de desarrollo en C/C++.
+- **Comandos:**
+  - `:ClangdSwitchSourceHeader`: Alterna entre cabecera `.h` y origen `.c`/`.cpp`.
+  - `:ClangdAST`: Muestra el árbol de sintaxis abstracta.
+  - `:ClangdTypeHierarchy`: Muestra la jerarquía de tipos/clases.
+
+### Java (`nvim-jdtls`)
+- **Función:** Comprensión profunda de proyectos Java (autocompletado, organización de imports, compilación).
+- **Comandos:**
+  - `:JdtCompile`: Compila el espacio de trabajo.
+  - `:JdtUpdateConfig`: Actualiza la configuración de Gradle/Maven.
+
+### Python (`venv-selector.nvim`)
+- **Función:** Selecciona el entorno virtual de Python rápidamente, configurando LSP y DAP en el proceso para evitar errores de módulos.
+- **Comandos:**
+  - `:VenvSelect` o `<leader>cv`: Abre el menú para elegir el entorno virtual.
+
+### Rust (`rustaceanvim`)
+- **Función:** Herramienta definitiva para Rust. Configura `rust-analyzer`, inyecta *inlay hints* y permite depuración fluida.
+- **Comandos:**
+  - `:RustLsp`: Comando base con múltiples subcomandos.
+  - `codeAction`: Sugerencias del compilador.
+  - `renderDiagnostic`: Muestra explicaciones detalladas de errores de compilación.
+
+---
+
+## 🧪 Testing, Depuración (DAP) y Construcción
+
+### `cmake-tools.nvim`
+- **Función:** Integración directa con proyectos CMake.
+- **Comandos:**
+  - `:CMakeGenerate`: Genera archivos de construcción.
+  - `:CMakeBuild`: Compila el proyecto.
+  - `:CMakeRun`: Ejecuta el binario.
+  - `:CMakeDebug`: Inicia sesión de depuración.
+
+### `neotest` & `neotest-python`
+- **Función:** Ejecución visual de pruebas unitarias sin salir del editor.
+- **Comandos:**
+  - `<leader>tt` / `tr`: Ejecuta la prueba bajo el cursor.
+  - `<leader>tT`: Ejecuta todas las pruebas del archivo.
+  - `<leader>ts`: Abre el panel de resumen (árbol de pruebas).
+  - `<leader>to`: Abre el panel de salida del fallo.
+
+### `nvim-dap`, `nvim-dap-ui` & `nvim-dap-python`
+- **Función:** Transforma Neovim en un IDE con depurador integrado (pausar, inspeccionar variables, avanzar paso a paso).
+- **Comandos DAP Básicos:**
+  - `<leader>db` / `<leader>dB`: Coloca/quita un punto de interrupción (Breakpoint).
+  - `<leader>dc`: Inicia o continúa la ejecución.
+  - `<leader>di`: Entrar (*Step Into*).
+  - `<leader>do`: Salir (*Step Out*).
+- **Comandos UI:**
+  - `<leader>du`: Abre/Cierra paneles gráficos (variables, estado, pila).
+  - `<leader>de`: Evalúa la expresión bajo el cursor.
+- **Comandos Python:**
+  - `<leader>dPc`: Depura la clase actual.
+  - `<leader>dPt`: Depura el test específico.
+
+---
+
+## 🗄️ Git y Bases de Datos
+
+### `gitsigns.nvim`
+- **Función:** Integración visual con Git (archivos modificados marcados en el margen).
+- **Comandos:**
+  - `]h` / `[h`: Saltar al siguiente/anterior bloque modificado (hunk).
+  - `<leader>ghp`: Ventana flotante con los cambios.
+  - `<leader>ghs`: Prepara (stage) el bloque actual para el commit.
+  - `<leader>ghr`: Deshace (reset) el bloque actual.
+  - `<leader>gb`: *Git Blame* de la línea actual.
+
+### `vim-dadbod` & `vim-dadbod-ui`
+- **Función:** Conexión y ejecución de consultas a Bases de Datos directamente desde Neovim con interfaz gráfica.
+- **Comandos:**
+  - `:DB [url]`: Inicia conexión por URL.
+  - `:DB {query}`: Ejecuta una consulta rápida.
+  - `:DBUI` / `:DBUIToggle`: Abre/Cierra el panel lateral de base de datos.
+  - `:DBUIAddConnection`: Agrega una conexión pegando la URL.
+
+---
+
+## ⚙️ Base del Sistema y Utilidades
+
+### `lazy.nvim`
+- **Función:** El veloz gestor de paquetes que administra todos estos plugins.
+- **Comandos:**
+  - `<leader>l`: Abre la interfaz de Lazy para instalar/actualizar.
+
+### `persistence.nvim`
+- **Función:** Guarda y restaura sesiones (archivos abiertos, posición, ventanas).
+- **Comandos:**
+  - `<leader>qs`: Restaura la sesión del directorio actual.
+  - `<leader>ql`: Restaura la última sesión en cualquier directorio.
+  - `<leader>qd`: Sale sin guardar la sesión actual.
+
+### `which-key.nvim`
+- **Función:** Salvavidas para la memoria. Despliega un menú interactivo con los atajos disponibles a medida que los vas tipeando.
+- **Comandos:**
+  - `:WhichKey`: Muestra el menú.
+
+### `plenary.nvim`
+- **Función:** Librería esencial de utilidades en Lua requerida por muchísimos otros plugins.
