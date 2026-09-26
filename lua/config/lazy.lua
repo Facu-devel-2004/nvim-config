@@ -50,6 +50,10 @@ require("lazy").setup({
     enabled = true, -- comprobar automáticamente si hay actualizaciones de los plugins
     notify = false, -- no notificar cuando haya una actualización
   },
+  rocks = {
+    enabled = false,
+    hererocks = false, -- Disable hererocks as it fails to compile and breaks plugin downloads
+  },
   performance = {
     rtp = {
       -- Deshabilita algunos plugins que vienen por defecto (runtimepath) para mejorar el rendimiento

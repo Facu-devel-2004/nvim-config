@@ -1,6 +1,7 @@
 return {
   {
     "3rd/image.nvim",
+    build = false,
     -- Sin dependencias extras conflictivas, usaremos el luarocks del sistema
     config = function()
       require("image").setup({
