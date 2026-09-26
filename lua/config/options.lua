@@ -51,3 +51,4 @@ vim.opt.splitbelow = true
 vim.opt.splitright = true
 -- Mantener la misma línea visual cuando se dividen ventanas
 vim.opt.splitkeep = "cursor"
+vim.env.PATH = vim.env.PATH .. ":" .. vim.fn.expand("~/.local/bin")

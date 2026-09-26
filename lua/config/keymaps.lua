@@ -41,3 +41,18 @@ end, { desc = "Abrir Antigravity (Gemini)" })
 -- ==========================================
 -- Salir del modo insertar de la terminal al modo normal presionando Esc dos veces rápidas
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Salir al modo normal (Terminal)" })
+
+-- ==========================================
+-- ATAJOS PARA ABRIR LAZYDOCKER
+-- ==========================================
+-- Abre lazydocker en una terminal flotante usando la utilidad nativa de LazyVim (Snacks)
+vim.keymap.set("n", "<leader>ld", function()
+  require("snacks").terminal("lazydocker")
+end, { desc = "Lazydocker (Flotante)" })
+
+-- Si prefieres el estilo de división vertical (como tus comandos de Ollama y agy):
+vim.keymap.set("n", "<leader>lD", function()
+  vim.cmd("vsplit")
+  vim.cmd("term lazydocker")
+  vim.cmd("startinsert")
+end, { desc = "Lazydocker (Vertical)" })

@@ -139,3 +139,20 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
     vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
   end,
 })
+
+-- Solución para archivos Python largos (como Jupytext con Base64)
+vim.api.nvim_create_autocmd("FileType", {
+  group = autogroup("jupytext_longlines"),
+  pattern = { "python", "quarto", "markdown" },
+  callback = function()
+    -- Desactivar wrap para que base64 no sature la pantalla
+    vim.opt_local.wrap = false
+    -- Limitar coloreado a 300 columnas para evitar lag (trabar nvim)
+    vim.opt_local.synmaxcol = 300
+    
+    -- Ocultar las cadenas base64 con un icono
+    vim.opt_local.conceallevel = 2
+    vim.opt_local.concealcursor = "nvic"
+    pcall(vim.cmd, [[syntax match Base64Image /data:image\/[^;]\+;base64,[A-Za-z0-9+/=]*/ conceal cchar=]])
+  end,
+})
