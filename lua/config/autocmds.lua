@@ -115,6 +115,7 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = { "text", "plaintex", "typst", "gitcommit", "markdown" },
   callback = function()
     vim.opt_local.wrap = true
+    vim.opt_local.linebreak = true
     vim.opt_local.spell = true
   end,
 })
@@ -123,8 +124,11 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd({ "FileType" }, {
   group = autogroup("json_conceal"),
   pattern = { "json", "jsonc", "json5" },
-  callback = function()
-    vim.opt_local.conceallevel = 0
+  callback = function(event)
+    -- No desactivar el conceal para archivos ipynb (para que las imágenes se oculten)
+    if not vim.api.nvim_buf_get_name(event.buf):match("%.ipynb$") then
+      vim.opt_local.conceallevel = 0
+    end
   end,
 })
 
@@ -141,18 +145,66 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 })
 
 -- Solución para archivos Python largos (como Jupytext con Base64)
-vim.api.nvim_create_autocmd("FileType", {
+vim.api.nvim_create_autocmd({ "FileType", "BufEnter" }, {
   group = autogroup("jupytext_longlines"),
-  pattern = { "python", "quarto", "markdown" },
-  callback = function()
-    -- Desactivar wrap para que base64 no sature la pantalla
-    vim.opt_local.wrap = false
-    -- Limitar coloreado a 300 columnas para evitar lag (trabar nvim)
+  pattern = { "python", "quarto", "markdown", "json", "jsonc", "*.ipynb" },
+  callback = function(event)
+    -- Desactivar wrap para que base64 no sature la pantalla (excepto en markdown)
+    if vim.bo[event.buf].filetype ~= "markdown" then
+      vim.opt_local.wrap = false
+    end
+    -- Limitar coloreado a 300 columnas para evitar lag
     vim.opt_local.synmaxcol = 300
     
-    -- Ocultar las cadenas base64 con un icono
-    vim.opt_local.conceallevel = 2
-    vim.opt_local.concealcursor = "nvic"
-    pcall(vim.cmd, [[syntax match Base64Image /data:image\/[^;]\+;base64,[A-Za-z0-9+/=]*/ conceal cchar=]])
+    -- Guardamos el foldexpr original (usualmente el de Treesitter) para no romper los pliegues normales del usuario!
+    local old_foldexpr = vim.opt_local.foldexpr:get()
+    if old_foldexpr == "" or old_foldexpr == "0" then
+      old_foldexpr = "v:lua.vim.treesitter.foldexpr()"
+    end
+    
+    _G.JupytextFold = function()
+      local lnum = vim.v.lnum
+      local line = vim.fn.getline(lnum)
+      if string.len(line) > 300 then
+        -- Es una línea de imagen base64 gigante
+        return ">1"
+      end
+      -- Si no es imagen, usamos el fold normal para no romper nada
+      if old_foldexpr and old_foldexpr ~= "v:lua.JupytextFold()" then
+        local ok, res = pcall(vim.api.nvim_eval, old_foldexpr)
+        if ok then return res end
+      end
+      return "0"
+    end
+    
+    _G.JupytextFoldText = function()
+      local line = vim.fn.getline(vim.v.foldstart)
+      if string.len(line) > 300 then
+        return "+--    [Imagen Base64 oculta]"
+      end
+      return vim.fn.foldtext()
+    end
+    
+    vim.opt_local.foldmethod = "expr"
+    vim.opt_local.foldexpr = "v:lua.JupytextFold()"
+    vim.opt_local.foldtext = "v:lua.JupytextFoldText()"
+    vim.opt_local.foldenable = true
+    
+    -- Evitar que el pliegue se abra accidentalmente al pasar el cursor
+    vim.opt_local.foldopen:remove("hor")
+    vim.opt_local.foldopen:remove("search")
+    vim.opt_local.foldopen:remove("jump")
+    
+    -- Forzar el cierre de los pliegues de las imágenes gigantes al abrir el archivo
+    -- (Por si tu foldlevel global los mantenía abiertos por defecto)
+    vim.schedule(function()
+      if not vim.api.nvim_buf_is_valid(event.buf) then return end
+      local lines = vim.api.nvim_buf_get_lines(event.buf, 0, -1, false)
+      for i, line in ipairs(lines) do
+        if string.len(line) > 300 then
+          pcall(vim.cmd, tostring(i) .. "foldclose")
+        end
+      end
+    end)
   end,
 })
